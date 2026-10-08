@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "serene-seasons-polymer-patch",
+  "version": "${version}",
+  "name": "Polymer Patch for Serene Seasons",
+  "description": "Polymer Patch for Serene Seasons",
+  "authors": [
+    "CJ"
+  ],
+  "contact": {
+    "homepage": "https://github.com/CJDevZ/SereneSeasons-polymer",
+    "issues": "https://github.com/CJDevZ/SereneSeasons-polymer/issues"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/ss-patch/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "eu.cj4.sereneseasonspatch.impl.SereneSeasonsPolymerPatch"
+    ]
+  },
+  "mixins": [
+    "serene-seasons-polymer-patch.mixins.json"
+  ],
+  "accessWidener": "serene-seasons-polymer-patch.accesswidener",
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "polymer-core": "*",
+    "polymer-blocks": "*",
+    "polymer-resource-pack": "*",
+    "sereneseasons": "*"
+  }
+}

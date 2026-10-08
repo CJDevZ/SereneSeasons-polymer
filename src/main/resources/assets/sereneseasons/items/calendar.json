@@ -1,0 +1,201 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:range_dispatch",
+          "entries": [
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_00"
+              },
+              "threshold": 0.0
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_01"
+              },
+              "threshold": 0.083333336
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_02"
+              },
+              "threshold": 0.16666667
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_03"
+              },
+              "threshold": 0.25
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_04"
+              },
+              "threshold": 0.33333334
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_05"
+              },
+              "threshold": 0.41666666
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_06"
+              },
+              "threshold": 0.5
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_07"
+              },
+              "threshold": 0.5833333
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_08"
+              },
+              "threshold": 0.6666667
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_09"
+              },
+              "threshold": 0.75
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_10"
+              },
+              "threshold": 0.8333333
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_11"
+              },
+              "threshold": 0.9166667
+            }
+          ],
+          "property": "minecraft:custom_model_data"
+        },
+        "when": "standard"
+      },
+      {
+        "model": {
+          "type": "minecraft:range_dispatch",
+          "entries": [
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_01"
+              },
+              "threshold": 0.0
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_02"
+              },
+              "threshold": 0.083333336
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_02"
+              },
+              "threshold": 0.16666667
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_03"
+              },
+              "threshold": 0.25
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_03"
+              },
+              "threshold": 0.33333334
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_04"
+              },
+              "threshold": 0.41666666
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_04"
+              },
+              "threshold": 0.5
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_05"
+              },
+              "threshold": 0.5833333
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_05"
+              },
+              "threshold": 0.6666667
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_00"
+              },
+              "threshold": 0.75
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_00"
+              },
+              "threshold": 0.8333333
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "sereneseasons:item/calendar_tropical_01"
+              },
+              "threshold": 0.9166667
+            }
+          ],
+          "property": "minecraft:custom_model_data"
+        },
+        "when": "tropical"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "sereneseasons:item/calendar_null"
+        },
+        "when": "none"
+      }
+    ],
+    "property": "minecraft:custom_model_data"
+  }
+}

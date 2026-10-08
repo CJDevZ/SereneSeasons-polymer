@@ -1,0 +1,113 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version '1.18-SNAPSHOT'
+    id 'maven-publish'
+    id "com.modrinth.minotaur" version "2.+"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+loom {
+    accessWidenerPath.set(file("src/main/resources/serene-seasons-polymer-patch.accesswidener"))
+}
+
+repositories {
+    // Add repositories to retrieve artifacts from in here.
+    // You should only use this when depending on other mods because
+    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    // for more information about repositories.
+    maven { url "https://api.modrinth.com/maven/" }
+    maven { url "https://maven.nucleoid.xyz" }
+}
+
+dependencies {
+    // To change the versions see the gradle.properties file
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+
+    // Night-Config / GlitchCore / Serene Seasons
+    implementation "com.electronwill.night-config:core:3.6.7"
+    implementation "maven.modrinth:s3dmwKy5:aaUghyGp"
+    api "maven.modrinth:e0bNACJD:V9PxJPuw"
+
+
+    implementation "eu.pb4:polymer-core:${project.polymer_version}"
+    implementation "eu.pb4:polymer-blocks:${project.polymer_version}"
+    implementation "eu.pb4:polymer-resource-pack:${project.polymer_version}"
+    localRuntime "eu.pb4:polymer-autohost:${project.polymer_version}"
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "loader_version", project.loader_version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+                "minecraft_version": project.minecraft_version,
+                "loader_version": project.loader_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 25
+}
+
+java {
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
+    withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${base.archivesName.get()}"}
+    }
+}
+
+// configure the maven publication
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
+    }
+}
+
+if (System.getenv("MODRINTH")) {
+    modrinth {
+        token = System.getenv("MODRINTH")
+        projectId = "NHi8KMg3"
+        versionNumber = "" + version
+        versionType = "release"
+        uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+        gameVersions = [(String)project.minecraft_version] // Must be an array, even with only one version
+        loaders = ["fabric"] // Must also be an array - no need to specify this if you're using Loom or ForgeGradle
+        dependencies { // A special DSL for creating dependencies
+            required.project "fabric-api"
+            required.project "serene-seasons"
+            required.project "polymer"
+        }
+    }
+}

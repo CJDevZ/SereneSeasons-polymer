@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "eu.cj4.sereneseasonspatch.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "BiomeAccessor",
+    "BiomeMixin",
+    "ChunkMapMixin",
+    "ItemStackMixin",
+    "RegistrySynchronizationMixin",
+    "WorldLoaderMixin",
+    "mod.CommandSetSeasonMixin",
+    "mod.ModBlockEntitiesMixin",
+    "mod.ModBlocksMixin",
+    "mod.ModFertilityAccessor",
+    "mod.ModItemsMixin",
+    "mod.SeasonCommandsMixin",
+    "mod.SeasonHandlerMixin",
+    "packet.BiomePaletteMixin",
+    "polymer.BlockModelTypeMixin",
+    "polymer.DefaultModelDataMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
