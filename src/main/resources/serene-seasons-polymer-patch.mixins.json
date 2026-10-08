@@ -2,10 +2,12 @@
   "required": true,
   "minVersion": "0.8",
   "package": "eu.cj4.sereneseasonspatch.mixin",
-  "compatibilityLevel": "JAVA_25",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AbstractContainerMenuAccessor",
     "BiomeAccessor",
     "BiomeMixin",
+    "BiomeSpecialEffectsAccessor",
     "ChunkMapMixin",
     "ItemStackMixin",
     "RegistrySynchronizationMixin",

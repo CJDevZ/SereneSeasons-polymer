@@ -3,9 +3,9 @@ package eu.cj4.sereneseasonspatch.impl.registry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderOwner;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import org.jspecify.annotations.Nullable;
+import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class RegistryOverlay<T> implements HolderOwner<T> {
         this.nextId = idOffset;
     }
 
-    public int register(Identifier key, T value) {
+    public int register(ResourceLocation key, T value) {
         this.elements.add(new Key(this, ResourceKey.create(this.resourceKey, key), value));
         return nextId++;
     }

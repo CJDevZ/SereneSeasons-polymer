@@ -1,10 +1,10 @@
 package eu.cj4.sereneseasonspatch.api.biome;
 
-import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;
-import org.jspecify.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 import sereneseasons.api.season.Season;
+import xyz.nucleoid.packettweaker.PacketContext;
 
 public interface PatchedBiome {
     @Nullable Integer sereneSeasons$getReplacement(Holder<Biome> object, PacketContext packetContext);

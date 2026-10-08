@@ -15,10 +15,10 @@ import java.util.stream.Stream;
 
 @Mixin(RegistrySynchronization.class)
 public class RegistrySynchronizationMixin {
-    @ModifyExpressionValue(method = "lambda$packRegistry$0", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Registry;listElements()Ljava/util/stream/Stream;"))
+    @ModifyExpressionValue(method = "method_56596", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Registry;listElements()Ljava/util/stream/Stream;"))
     private static Stream<Holder.Reference<Biome>> overlayRegistryData(
             Stream<Holder.Reference<Biome>> original,
-            @Local(name = "registry", argsOnly = true) Registry<?> registry
+            @Local(argsOnly = true, ordinal = 0) Registry<?> registry
     ) {
         return registry.key() == Registries.BIOME && SereneSeasonsPolymerPatch.SEASON_BIOMES != null
                 ? Stream.concat(original, SereneSeasonsPolymerPatch.SEASON_BIOMES.listElements()) : original;

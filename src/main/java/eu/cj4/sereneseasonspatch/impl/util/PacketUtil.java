@@ -1,7 +1,6 @@
 package eu.cj4.sereneseasonspatch.impl.util;
 
-import eu.pb4.polymer.core.mixin.other.AbstractContainerMenuAccessor;
-import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
+import eu.cj4.sereneseasonspatch.mixin.AbstractContainerMenuAccessor;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,14 +11,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import sereneseasons.api.season.Season;
+import xyz.nucleoid.packettweaker.PacketContext;
 
 import static eu.cj4.sereneseasonspatch.impl.SereneSeasonsPolymerPatch.id;
 
 public final class PacketUtil {
-    public static final PacketContext.Key<Boolean> HAS_MOD = PacketContext.key(id("has_mod"));
-    public static final PacketContext.Key<ResourceKey<Level>> DIMENSION_CONTEXT = PacketContext.key(id("dimension"));
-    public static final PacketContext.Key<Season.SubSeason> SUB_SEASON_CONTEXT = PacketContext.key(id("sub_season"));
-    public static final PacketContext.Key<Season.TropicalSeason> TROPICAL_SEASON_CONTEXT = PacketContext.key(id("tropical_season"));
+    public static final PacketContext.Key<Boolean> HAS_MOD = PacketContext.Key.of(id("has_mod").toString());
+    public static final PacketContext.Key<ResourceKey<Level>> DIMENSION_CONTEXT = PacketContext.Key.of(id("dimension").toString());
+    public static final PacketContext.Key<Season.SubSeason> SUB_SEASON_CONTEXT = PacketContext.Key.of(id("sub_season").toString());
+    public static final PacketContext.Key<Season.TropicalSeason> TROPICAL_SEASON_CONTEXT = PacketContext.Key.of(id("tropical_season").toString());
 
     private PacketUtil() {
     }

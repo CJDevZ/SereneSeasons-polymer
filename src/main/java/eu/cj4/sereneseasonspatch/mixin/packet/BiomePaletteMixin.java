@@ -3,7 +3,6 @@ package eu.cj4.sereneseasonspatch.mixin.packet;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import eu.cj4.sereneseasonspatch.api.biome.PatchedBiome;
-import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
 import net.minecraft.core.Holder;
 import net.minecraft.core.IdMap;
 import net.minecraft.world.level.biome.Biome;
@@ -12,6 +11,7 @@ import net.minecraft.world.level.chunk.LinearPalette;
 import net.minecraft.world.level.chunk.SingleValuePalette;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import xyz.nucleoid.packettweaker.PacketContext;
 
 @Mixin(value = {LinearPalette.class, SingleValuePalette.class, HashMapPalette.class}, priority = 500)
 public class BiomePaletteMixin {

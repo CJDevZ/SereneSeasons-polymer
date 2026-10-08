@@ -2,7 +2,6 @@ package eu.cj4.sereneseasonspatch.mixin;
 
 import eu.cj4.sereneseasonspatch.api.biome.PatchedBiome;
 import eu.cj4.sereneseasonspatch.impl.util.PacketUtil;
-import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import sereneseasons.api.season.Season;
 import sereneseasons.init.ModConfig;
 import sereneseasons.init.ModTags;
+import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.Arrays;
 
@@ -31,11 +31,11 @@ public class BiomeMixin implements PatchedBiome {
 
     @Override
     public Integer sereneSeasons$getReplacement(Holder<Biome> object, PacketContext packetContext) {
-        if (packetContext.orElseThrow(PacketUtil.HAS_MOD)
-                || !ModConfig.seasons.isDimensionWhitelisted(packetContext.orElseThrow(PacketUtil.DIMENSION_CONTEXT))) return null;
+        if (packetContext.getData(PacketUtil.HAS_MOD)
+                || !ModConfig.seasons.isDimensionWhitelisted(packetContext.getData(PacketUtil.DIMENSION_CONTEXT))) return null;
         return object.is(ModTags.Biomes.TROPICAL_BIOMES)
-                ? sereneSeasons$tropicalSeasonMap[packetContext.orElseThrow(PacketUtil.TROPICAL_SEASON_CONTEXT).ordinal()]
-                : sereneSeasons$seasonMap[packetContext.orElseThrow(PacketUtil.SUB_SEASON_CONTEXT).ordinal()];
+                ? sereneSeasons$tropicalSeasonMap[packetContext.getData(PacketUtil.TROPICAL_SEASON_CONTEXT).ordinal()]
+                : sereneSeasons$seasonMap[packetContext.getData(PacketUtil.SUB_SEASON_CONTEXT).ordinal()];
     }
 
     @Override

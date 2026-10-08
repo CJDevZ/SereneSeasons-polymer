@@ -1,11 +1,12 @@
 package eu.cj4.sereneseasonspatch.impl.util;
 
 import eu.cj4.sereneseasonspatch.mixin.BiomeAccessor;
+import eu.cj4.sereneseasonspatch.mixin.BiomeSpecialEffectsAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import sereneseasons.api.season.ISeasonColorProvider;
 import sereneseasons.api.season.Season;
 import sereneseasons.init.ModConfig;
@@ -14,7 +15,7 @@ import sereneseasons.season.SeasonHooks;
 import sereneseasons.util.SeasonColorUtil;
 
 public class SeasonBiomeUtil {
-    public static final ScopedValue<Boolean> IS_WORLD_LOAD = ScopedValue.newInstance();
+    public static final ThreadLocal<Boolean> IS_WORLD_LOAD = new ThreadLocal<>();
 
     public static Biome createSeasonBiome(Holder<Biome> holder, ISeasonColorProvider colorProvider) {
         Biome biome = holder.value();
@@ -27,18 +28,27 @@ public class SeasonBiomeUtil {
                 originalClimate.temperatureModifier(),
                 originalClimate.downfall()
         );
-        var specialEffects = new BiomeSpecialEffects(
-                originalEffects.waterColor(),
-                originalEffects.foliageColorOverride().map(color -> applySeasonalFoliageColouring(colorProvider, holder, color)),
-                originalEffects.dryFoliageColorOverride(),
-                originalEffects.grassColorOverride().map(color -> applySeasonalGrassColouring(colorProvider, holder, color)),
-                originalEffects.grassColorModifier()
+        var specialEffects = BiomeSpecialEffectsAccessor.createInstance(
+                originalEffects.getFogColor(),
+                originalEffects.getWaterColor(),
+                originalEffects.getWaterFogColor(),
+                originalEffects.getSkyColor(),
+                originalEffects.getFoliageColorOverride().map(color -> applySeasonalFoliageColouring(colorProvider, holder, color)),
+                originalEffects.getDryFoliageColorOverride(),
+                originalEffects.getGrassColorOverride().map(color -> applySeasonalGrassColouring(colorProvider, holder, color)),
+                originalEffects.getGrassColorModifier(),
+                originalEffects.getAmbientParticleSettings(),
+                originalEffects.getAmbientLoopSoundEvent(),
+                originalEffects.getAmbientMoodSettings(),
+                originalEffects.getAmbientAdditionsSettings(),
+                originalEffects.getBackgroundMusic(),
+                originalEffects.getBackgroundMusicVolume()
         );
         return BiomeAccessor.createInstance(
                 climateSettings,
-                biome.getAttributes(),
                 specialEffects,
-                BiomeGenerationSettings.EMPTY
+                BiomeGenerationSettings.EMPTY,
+                MobSpawnSettings.EMPTY
         );
     }
 

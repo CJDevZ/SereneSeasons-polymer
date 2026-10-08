@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import sereneseasons.api.season.Season;
 import sereneseasons.season.SeasonHandler;
 import sereneseasons.season.SeasonTime;
+import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.HashMap;
 
@@ -44,8 +45,9 @@ public class SeasonHandlerMixin {
         }
 
         for (ServerPlayer player : serverLevel.players()) {
-            player.getPacketContext().set(PacketUtil.SUB_SEASON_CONTEXT, newSubSeason);
-            player.getPacketContext().set(PacketUtil.TROPICAL_SEASON_CONTEXT, newTropicalSeason);
+            PacketContext context = PacketContext.create(player);
+            context.setData(PacketUtil.SUB_SEASON_CONTEXT, newSubSeason);
+            context.setData(PacketUtil.TROPICAL_SEASON_CONTEXT, newTropicalSeason);
         }
         SereneSeasonsPolymerPatch.onSeasonChange(serverLevel);
     }

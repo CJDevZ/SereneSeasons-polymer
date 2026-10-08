@@ -1,7 +1,6 @@
 package eu.cj4.sereneseasonspatch.impl.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -12,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import xyz.nucleoid.packettweaker.PacketContext;
 
 public record PolyBaseItem(Item item) implements PolymerItem {
     @Override

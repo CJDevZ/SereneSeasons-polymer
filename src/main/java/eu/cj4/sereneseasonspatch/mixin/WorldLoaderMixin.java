@@ -10,8 +10,14 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(WorldLoader.class)
 public class WorldLoaderMixin {
-    @WrapOperation(method = "lambda$load$4", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerResources;updateComponentsAndStaticRegistryTags()V"))
+    @WrapOperation(method = "method_42097", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerResources;updateStaticRegistryTags()V"))
     private static void setupFakeBiomes(ReloadableServerResources instance, Operation<Void> original) {
-        ScopedValue.where(SeasonBiomeUtil.IS_WORLD_LOAD, true).run(() -> original.call(instance));
+        Boolean oldValue = SeasonBiomeUtil.IS_WORLD_LOAD.get();
+        SeasonBiomeUtil.IS_WORLD_LOAD.set(true);
+        try {
+            original.call(instance);
+        } finally {
+            SeasonBiomeUtil.IS_WORLD_LOAD.set(oldValue);
+        }
     }
 }
