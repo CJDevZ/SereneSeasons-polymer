@@ -1,6 +1,7 @@
 package eu.cj4.sereneseasonspatch.impl.util;
 
 import eu.cj4.sereneseasonspatch.mixin.BiomeAccessor;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
@@ -9,6 +10,7 @@ import sereneseasons.api.season.ISeasonColorProvider;
 import sereneseasons.api.season.Season;
 import sereneseasons.init.ModConfig;
 import sereneseasons.init.ModTags;
+import sereneseasons.season.SeasonHooks;
 import sereneseasons.util.SeasonColorUtil;
 
 public class SeasonBiomeUtil {
@@ -21,7 +23,7 @@ public class SeasonBiomeUtil {
 
         var climateSettings = new Biome.ClimateSettings(
                 originalClimate.hasPrecipitation(),
-                colorProvider instanceof Season.SubSeason subSeason && subSeason.getSeason() == Season.WINTER ? 0.0f : originalClimate.temperature(),
+                colorProvider instanceof Season.SubSeason subSeason ? SeasonHooks.getBiomeTemperatureInSeason(subSeason, holder, BlockPos.ZERO, 0) : originalClimate.temperature(),
                 originalClimate.temperatureModifier(),
                 originalClimate.downfall()
         );

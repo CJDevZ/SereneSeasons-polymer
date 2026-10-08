@@ -72,6 +72,11 @@ public class SereneSeasonsPolymerPatch implements ModInitializer {
 
                 if (holder.is(ModTags.Biomes.TROPICAL_BIOMES)) {
                     for (Season.TropicalSeason tropicalSeason : Season.TropicalSeason.VALUES) {
+                        if (tropicalSeason.getGrassOverlay() == 0xFFFFFF
+                                && tropicalSeason.getGrassSaturationMultiplier() == -1.0F
+                                && tropicalSeason.getFoliageOverlay() == 0xFFFFFF
+                                && tropicalSeason.getFoliageSaturationMultiplier() == -1.0F
+                        ) continue;
                         Identifier identifier = biomeId.withSuffix("/" + tropicalSeason.name().toLowerCase(Locale.ROOT));
                         patchedBiome.sereneSeasons$addTropicalSeason(
                                 tropicalSeason,
@@ -80,6 +85,11 @@ public class SereneSeasonsPolymerPatch implements ModInitializer {
                     }
                 } else {
                     for (Season.SubSeason subSeason : Season.SubSeason.VALUES) {
+                        if (subSeason.getGrassOverlay() == 0xFFFFFF
+                                && subSeason.getGrassSaturationMultiplier() == -1.0F
+                                && subSeason.getFoliageOverlay() == 0xFFFFFF
+                                && subSeason.getFoliageSaturationMultiplier() == -1.0F
+                        ) continue;
                         Identifier identifier = biomeId.withSuffix("/" + subSeason.getSerializedName());
                         patchedBiome.sereneSeasons$addSubSeason(
                                 subSeason,
