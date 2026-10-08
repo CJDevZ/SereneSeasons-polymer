@@ -29,7 +29,7 @@ public class SeasonBiomeUtil {
         );
         var specialEffects = new BiomeSpecialEffects(
                 originalEffects.waterColor(),
-                originalEffects.grassColorOverride().map(color -> applySeasonalFoliageColouring(colorProvider, holder, color)),
+                originalEffects.foliageColorOverride().map(color -> applySeasonalFoliageColouring(colorProvider, holder, color)),
                 originalEffects.dryFoliageColorOverride(),
                 originalEffects.grassColorOverride().map(color -> applySeasonalGrassColouring(colorProvider, holder, color)),
                 originalEffects.grassColorModifier()

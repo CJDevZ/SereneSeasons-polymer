@@ -35,8 +35,8 @@ dependencies {
 
     // Night-Config / GlitchCore / Serene Seasons
     implementation "com.electronwill.night-config:core:3.6.7"
-    implementation "maven.modrinth:s3dmwKy5:aaUghyGp"
-    api "maven.modrinth:e0bNACJD:V9PxJPuw"
+    implementation "maven.modrinth:s3dmwKy5:${project.glitchcore_version}"
+    api "maven.modrinth:e0bNACJD:${project.sereneseasons_version}"
 
 
     implementation "eu.pb4:polymer-core:${project.polymer_version}"
